@@ -5,120 +5,230 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    body {
-        margin: 0;
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: transparent;
-    }
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    color: #e2e8f0;
+}
 
-    .timeline-container {
-        display: flex;
-        height: 100%;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 5px;
-    }
+/* Timeline */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px;
+    position: relative;
+}
 
-    .timeline-line {
-        position: absolute;
-        top: 50%;
-        left: 5%;
-        right: 5%;
-        height: 3px;
-        background: #d0d0d0;
-        z-index: 0;
-    }
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 32px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: linear-gradient(to right, #3b82f6, #22d3ee, #f59e0b);
+    opacity: 0.6;
+}
 
-    .phase {
-        position: relative;
-        flex: 1;
-        text-align: center;
-        z-index: 1;
-    }
+/* Phase */
+.phase {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
 
-    .node {
-        width: 14px;
-        height: 14px;
-        background: #fff;
-        border-radius: 50%;
-        margin: 0 auto 8px;
-        border: 3px solid;
-    }
+.node {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin: auto;
+    background: #020617;
+    border: 2px solid;
+    box-shadow: 0 0 10px currentColor;
+}
 
-    .card {
-        border-radius: 10px;
-        padding: 10px;
-        color: #fff;
-        font-size: 12px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        display: inline-block;
-        min-width: 120px;
-    }
+/* Cards */
+.card {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 12px;
+    transition: 0.3s;
+}
 
-    .title {
-        font-weight: bold;
-        font-size: 13px;
-    }
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
 
-    .subtitle {
-        font-size: 11px;
-        opacity: 0.9;
-    }
+/* Colors */
+.phase1 { color: #3b82f6; }
+.phase2 { color: #22d3ee; }
+.phase3 { color: #f59e0b; }
 
-    /* Phase Colors */
-    .phase1 .node { border-color: #2f6bd6; }
-    .phase1 .card { background: #2f6bd6; }
+/* Details Panel */
+.details {
+    margin: 10px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+}
 
-    .phase2 .node { border-color: #1aa3a3; }
-    .phase2 .card { background: #1aa3a3; }
+.active {
+    display: block;
+}
 
-    .phase3 .node { border-color: #f39c12; }
-    .phase3 .card { background: #f39c12; }
+/* Content Styling */
+.section {
+    margin-bottom: 10px;
+}
 
+.section-title {
+    font-weight: bold;
+    color: #38bdf8;
+    margin-bottom: 4px;
+}
+
+.agency {
+    font-size: 11px;
+    color: #94a3b8;
+}
 </style>
+
+<script>
+function showDetails(id) {
+    document.querySelectorAll('.details').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+</script>
+
 </head>
 
 <body>
 
-<div style="position:relative;">
-    <div class="timeline-line"></div>
+<!-- TIMELINE -->
+<div class="timeline">
 
-    <div class="timeline-container">
-
-        <!-- FASA 1 -->
-        <div class="phase phase1">
-            <div class="node"></div>
-            <div class="card">
-                <div class="title">FASA 1</div>
-                <div>Pembangunan Asas Digital</div>
-                <div class="subtitle">2026–2027</div>
-                <div class="subtitle">Projek Perintis</div>
-            </div>
+    <div class="phase phase1" onclick="showDetails('f1')">
+        <div class="node"></div>
+        <div class="card">
+            <b>FASA 1</b><br>2026–2027
         </div>
-
-        <!-- FASA 2 -->
-        <div class="phase phase2">
-            <div class="node"></div>
-            <div class="card">
-                <div class="title">FASA 2</div>
-                <div>Pengukuhan & Integrasi</div>
-                <div class="subtitle">2028–2029</div>
-                <div class="subtitle">Pembangunan / Replication</div>
-            </div>
-        </div>
-
-        <!-- FASA 3 -->
-        <div class="phase phase3">
-            <div class="node"></div>
-            <div class="card">
-                <div class="title">FASA 3</div>
-                <div>Ekosistem Smart Masjid</div>
-                <div class="subtitle">2030</div>
-                <div class="subtitle">Pengembangan / Expansion</div>
-            </div>
-        </div>
-
     </div>
+
+    <div class="phase phase2" onclick="showDetails('f2')">
+        <div class="node"></div>
+        <div class="card">
+            <b>FASA 2</b><br>2028–2029
+        </div>
+    </div>
+
+    <div class="phase phase3" onclick="showDetails('f3')">
+        <div class="node"></div>
+        <div class="card">
+            <b>FASA 3</b><br>2030
+        </div>
+    </div>
+
+</div>
+
+<!-- DETAILS -->
+
+<div id="f1" class="details">
+<b>FASA 1 – Pembangunan Asas Digital</b><br><br>
+
+<div class="section">
+<div class="section-title">Prasarana Pintar</div>
+WiFi masjid, Paparan waktu solat digital, Sistem audio visual, CCTV, Paparan maklumat digital<br>
+<div class="agency">Agensi: JHEAT, SKMM, PBT, Penyedia Telekomunikasi</div>
+</div>
+
+<div class="section">
+<div class="section-title">Pengurusan Pintar</div>
+Rekod pentadbiran digital, Pangkalan data kariah, Hebahan digital, Sistem infak tanpa tunai<br>
+<div class="agency">Agensi: JHEAT, Jawatankuasa Masjid, Penyedia ICT</div>
+</div>
+
+<div class="section">
+<div class="section-title">Persekitaran Pintar</div>
+Kemudahan asas, Pencahayaan, Parkir teratur, Laluan OKU<br>
+<div class="agency">Agensi: PBT, JKR, Komuniti Masjid</div>
+</div>
+
+<div class="section">
+<div class="section-title">Pengimarahan Pintar</div>
+Live streaming kuliah, Pembelajaran hibrid<br>
+<div class="agency">Agensi: JHEAT, Jawatankuasa Masjid</div>
+</div>
+
+</div>
+
+<div id="f2" class="details">
+<b>FASA 2 – Pengukuhan & Integrasi</b><br><br>
+
+<div class="section">
+<div class="section-title">Prasarana Pintar</div>
+Integrasi sistem teknologi, IoT lampu & penyaman udara, Kemudahan OKU & warga emas<br>
+<div class="agency">Agensi: JHEAT, SKMM, PBT</div>
+</div>
+
+<div class="section">
+<div class="section-title">Pengurusan Pintar</div>
+Sistem pengurusan masjid digital, Integrasi data komuniti, Analisis kehadiran<br>
+<div class="agency">Agensi: JHEAT, Penyedia ICT</div>
+</div>
+
+<div class="section">
+<div class="section-title">Persekitaran Pintar</div>
+Pengurusan sisa, Landskap hijau, Ruang komuniti<br>
+<div class="agency">Agensi: PBT, JKR</div>
+</div>
+
+<div class="section">
+<div class="section-title">Pengimarahan Pintar</div>
+Arkib digital kuliah, Platform komunikasi komuniti, Sistem sukarelawan digital<br>
+<div class="agency">Agensi: JHEAT, NGO</div>
+</div>
+
+</div>
+
+<div id="f3" class="details">
+<b>FASA 3 – Ekosistem Smart Masjid</b><br><br>
+
+<div class="section">
+<div class="section-title">Prasarana Pintar</div>
+Tenaga solar, Sistem air cekap, Integrasi teknologi menyeluruh<br>
+<div class="agency">Agensi: JHEAT, TNB, PBT</div>
+</div>
+
+<div class="section">
+<div class="section-title">Pengurusan Pintar</div>
+Super Apps Smart Masjid (lokasi, aduan, maklum balas, rating)<br>
+<div class="agency">Agensi: JHEAT, Penyedia ICT</div>
+</div>
+
+<div class="section">
+<div class="section-title">Persekitaran Pintar</div>
+Low Carbon Mosque, Bahan binaan mesra alam<br>
+<div class="agency">Agensi: PBT, JKR</div>
+</div>
+
+<div class="section">
+<div class="section-title">Pengimarahan Pintar</div>
+Aplikasi peringatan kuliah, Platform komuniti, Hebahan generasi muda<br>
+<div class="agency">Agensi: JHEAT, NGO</div>
+</div>
+
 </div>
 
 </body>
