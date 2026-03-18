@@ -12,11 +12,21 @@ body {
     color: #e2e8f0;
 }
 
+/* TITLE */
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    letter-spacing: 1px;
+    color: #38bdf8;
+}
+
 /* Timeline */
 .timeline {
     display: flex;
     justify-content: space-between;
-    padding: 20px 10px;
+    padding: 10px;
     position: relative;
 }
 
@@ -28,7 +38,6 @@ body {
     right: 5%;
     height: 2px;
     background: linear-gradient(to right, #3b82f6, #22d3ee, #f59e0b);
-    opacity: 0.6;
 }
 
 /* Phase */
@@ -36,7 +45,6 @@ body {
     flex: 1;
     text-align: center;
     cursor: pointer;
-    position: relative;
 }
 
 .node {
@@ -63,7 +71,6 @@ body {
 
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 15px rgba(255,255,255,0.2);
 }
 
 /* Colors */
@@ -84,11 +91,11 @@ body {
     overflow-y: auto;
 }
 
-.active {
+.details.active {
     display: block;
 }
 
-/* Content Styling */
+/* Content */
 .section {
     margin-bottom: 10px;
 }
@@ -106,9 +113,19 @@ body {
 </style>
 
 <script>
-function showDetails(id) {
-    document.querySelectorAll('.details').forEach(el => el.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+let currentOpen = null;
+
+function toggleDetails(id) {
+    const el = document.getElementById(id);
+
+    if (currentOpen === id) {
+        el.classList.remove('active');
+        currentOpen = null;
+    } else {
+        document.querySelectorAll('.details').forEach(d => d.classList.remove('active'));
+        el.classList.add('active');
+        currentOpen = id;
+    }
 }
 </script>
 
@@ -116,24 +133,29 @@ function showDetails(id) {
 
 <body>
 
+<!-- TITLE -->
+<div class="title">
+PELAN TINDAKAN SMART MASJID 2026–2030
+</div>
+
 <!-- TIMELINE -->
 <div class="timeline">
 
-    <div class="phase phase1" onclick="showDetails('f1')">
+    <div class="phase phase1" onclick="toggleDetails('f1')">
         <div class="node"></div>
         <div class="card">
             <b>FASA 1</b><br>2026–2027
         </div>
     </div>
 
-    <div class="phase phase2" onclick="showDetails('f2')">
+    <div class="phase phase2" onclick="toggleDetails('f2')">
         <div class="node"></div>
         <div class="card">
             <b>FASA 2</b><br>2028–2029
         </div>
     </div>
 
-    <div class="phase phase3" onclick="showDetails('f3')">
+    <div class="phase phase3" onclick="toggleDetails('f3')">
         <div class="node"></div>
         <div class="card">
             <b>FASA 3</b><br>2030
@@ -149,28 +171,27 @@ function showDetails(id) {
 
 <div class="section">
 <div class="section-title">Prasarana Pintar</div>
-WiFi masjid, Paparan waktu solat digital, Sistem audio visual, CCTV, Paparan maklumat digital<br>
+WiFi masjid, Paparan waktu solat digital, Sistem audio visual, CCTV, Paparan maklumat digital
 <div class="agency">Agensi: JHEAT, SKMM, PBT, Penyedia Telekomunikasi</div>
 </div>
 
 <div class="section">
 <div class="section-title">Pengurusan Pintar</div>
-Rekod pentadbiran digital, Pangkalan data kariah, Hebahan digital, Sistem infak tanpa tunai<br>
+Rekod pentadbiran digital, Pangkalan data kariah, Hebahan digital, Sistem infak tanpa tunai
 <div class="agency">Agensi: JHEAT, Jawatankuasa Masjid, Penyedia ICT</div>
 </div>
 
 <div class="section">
 <div class="section-title">Persekitaran Pintar</div>
-Kemudahan asas, Pencahayaan, Parkir teratur, Laluan OKU<br>
+Kemudahan asas, Pencahayaan, Parkir teratur, Laluan OKU
 <div class="agency">Agensi: PBT, JKR, Komuniti Masjid</div>
 </div>
 
 <div class="section">
 <div class="section-title">Pengimarahan Pintar</div>
-Live streaming kuliah, Pembelajaran hibrid<br>
+Live streaming kuliah, Pembelajaran hibrid
 <div class="agency">Agensi: JHEAT, Jawatankuasa Masjid</div>
 </div>
-
 </div>
 
 <div id="f2" class="details">
@@ -178,28 +199,27 @@ Live streaming kuliah, Pembelajaran hibrid<br>
 
 <div class="section">
 <div class="section-title">Prasarana Pintar</div>
-Integrasi sistem teknologi, IoT lampu & penyaman udara, Kemudahan OKU & warga emas<br>
+Integrasi sistem teknologi, IoT lampu & penyaman udara, Kemudahan OKU & warga emas
 <div class="agency">Agensi: JHEAT, SKMM, PBT</div>
 </div>
 
 <div class="section">
 <div class="section-title">Pengurusan Pintar</div>
-Sistem pengurusan masjid digital, Integrasi data komuniti, Analisis kehadiran<br>
+Sistem pengurusan masjid digital, Integrasi data komuniti, Analisis kehadiran
 <div class="agency">Agensi: JHEAT, Penyedia ICT</div>
 </div>
 
 <div class="section">
 <div class="section-title">Persekitaran Pintar</div>
-Pengurusan sisa, Landskap hijau, Ruang komuniti<br>
+Pengurusan sisa, Landskap hijau, Ruang komuniti
 <div class="agency">Agensi: PBT, JKR</div>
 </div>
 
 <div class="section">
 <div class="section-title">Pengimarahan Pintar</div>
-Arkib digital kuliah, Platform komunikasi komuniti, Sistem sukarelawan digital<br>
+Arkib digital kuliah, Platform komunikasi komuniti, Sistem sukarelawan digital
 <div class="agency">Agensi: JHEAT, NGO</div>
 </div>
-
 </div>
 
 <div id="f3" class="details">
@@ -207,28 +227,27 @@ Arkib digital kuliah, Platform komunikasi komuniti, Sistem sukarelawan digital<b
 
 <div class="section">
 <div class="section-title">Prasarana Pintar</div>
-Tenaga solar, Sistem air cekap, Integrasi teknologi menyeluruh<br>
+Tenaga solar, Sistem air cekap, Integrasi teknologi menyeluruh
 <div class="agency">Agensi: JHEAT, TNB, PBT</div>
 </div>
 
 <div class="section">
 <div class="section-title">Pengurusan Pintar</div>
-Super Apps Smart Masjid (lokasi, aduan, maklum balas, rating)<br>
+Super Apps Smart Masjid
 <div class="agency">Agensi: JHEAT, Penyedia ICT</div>
 </div>
 
 <div class="section">
 <div class="section-title">Persekitaran Pintar</div>
-Low Carbon Mosque, Bahan binaan mesra alam<br>
+Low Carbon Mosque, Bahan binaan mesra alam
 <div class="agency">Agensi: PBT, JKR</div>
 </div>
 
 <div class="section">
 <div class="section-title">Pengimarahan Pintar</div>
-Aplikasi peringatan kuliah, Platform komuniti, Hebahan generasi muda<br>
+Aplikasi peringatan kuliah, Platform komuniti, Hebahan generasi muda
 <div class="agency">Agensi: JHEAT, NGO</div>
 </div>
-
 </div>
 
 </body>
