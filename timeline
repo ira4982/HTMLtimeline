@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: transparent;
+    }
+
+    .timeline-container {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 5px;
+    }
+
+    .timeline-line {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        right: 5%;
+        height: 3px;
+        background: #d0d0d0;
+        z-index: 0;
+    }
+
+    .phase {
+        position: relative;
+        flex: 1;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .node {
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border-radius: 50%;
+        margin: 0 auto 8px;
+        border: 3px solid;
+    }
+
+    .card {
+        border-radius: 10px;
+        padding: 10px;
+        color: #fff;
+        font-size: 12px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        display: inline-block;
+        min-width: 120px;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+        opacity: 0.9;
+    }
+
+    /* Phase Colors */
+    .phase1 .node { border-color: #2f6bd6; }
+    .phase1 .card { background: #2f6bd6; }
+
+    .phase2 .node { border-color: #1aa3a3; }
+    .phase2 .card { background: #1aa3a3; }
+
+    .phase3 .node { border-color: #f39c12; }
+    .phase3 .card { background: #f39c12; }
+
+</style>
+</head>
+
+<body>
+
+<div style="position:relative;">
+    <div class="timeline-line"></div>
+
+    <div class="timeline-container">
+
+        <!-- FASA 1 -->
+        <div class="phase phase1">
+            <div class="node"></div>
+            <div class="card">
+                <div class="title">FASA 1</div>
+                <div>Pembangunan Asas Digital</div>
+                <div class="subtitle">2026–2027</div>
+                <div class="subtitle">Projek Perintis</div>
+            </div>
+        </div>
+
+        <!-- FASA 2 -->
+        <div class="phase phase2">
+            <div class="node"></div>
+            <div class="card">
+                <div class="title">FASA 2</div>
+                <div>Pengukuhan & Integrasi</div>
+                <div class="subtitle">2028–2029</div>
+                <div class="subtitle">Pembangunan / Replication</div>
+            </div>
+        </div>
+
+        <!-- FASA 3 -->
+        <div class="phase phase3">
+            <div class="node"></div>
+            <div class="card">
+                <div class="title">FASA 3</div>
+                <div>Ekosistem Smart Masjid</div>
+                <div class="subtitle">2030</div>
+                <div class="subtitle">Pengembangan / Expansion</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
